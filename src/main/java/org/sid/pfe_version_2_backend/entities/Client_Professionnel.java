@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Client_Professionnel extends Client{
     private String matricule_fiscale;
-    private String raison_socile;
+    private String raison_social;
     private String num_registre_commerce;
     @OneToMany(mappedBy = "client_professionnel" ) /**Le clé etranger dans le bank account **/
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)/*C'est pas important de nous afficher la liste des BankAccount**/

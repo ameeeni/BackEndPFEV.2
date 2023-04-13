@@ -30,6 +30,7 @@ public class Client implements UserDetails {
     private String nom;
     private String prénom;
     private String email;
+    private String phone;
     private String mot_de_passe;
     @Enumerated(EnumType.STRING)
     private Role role;
