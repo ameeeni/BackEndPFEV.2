@@ -4,6 +4,8 @@ import org.sid.pfe_version_2_backend.entities.Client_Particulier;
 import org.sid.pfe_version_2_backend.repositories.ClientParticulierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,8 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ClientParticulierServiceImpl implements ClientParticulierService {
     @Autowired
-
     ClientParticulierRepository clientParticulierRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+
+
+
     @Override
     public Client_Particulier getClientById(Long id) {
         return  clientParticulierRepository.findById(id).get();
@@ -20,6 +27,8 @@ public class ClientParticulierServiceImpl implements ClientParticulierService {
 
     @Override
     public Client_Particulier SaveClient(Client_Particulier newClientParticulier) {
+        System.out.println("********"+ newClientParticulier.getPassword());
+        newClientParticulier.setMot_de_passe(passwordEncoder.encode(newClientParticulier.getPassword()));
         return clientParticulierRepository.save(newClientParticulier);
     }
 
@@ -31,6 +40,7 @@ public class ClientParticulierServiceImpl implements ClientParticulierService {
         updateClient.setNom(detailsClientParticulier.getNom());
         updateClient.setPrénom(detailsClientParticulier.getPrénom());
         updateClient.setEmail(detailsClientParticulier.getEmail());
+        updateClient.setPhone(detailsClientParticulier.getPhone());
         updateClient.setMot_de_passe(detailsClientParticulier.getMot_de_passe());
         updateClient.setCIN(detailsClientParticulier.getCIN());
         updateClient.setStatus(detailsClientParticulier.getStatus());

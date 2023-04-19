@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/ClientParticulier")
+@CrossOrigin("*")
 @RestController
 public class ClientParticulierController {
     @Autowired
@@ -21,6 +22,7 @@ public class ClientParticulierController {
     public ResponseEntity<Client_Particulier> getClientById(@PathVariable Long id){
         return new ResponseEntity<>(clientParticulierService.getClientById(id) , HttpStatus.OK);
     }
+    @CrossOrigin(origins = "http://localhost:8100")
     @PostMapping
     public ResponseEntity<Client_Particulier> saveClient(@RequestBody Client_Particulier newClient) {
         newClient.setRole(Role.USER);

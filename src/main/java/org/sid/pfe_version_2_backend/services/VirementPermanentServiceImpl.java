@@ -12,31 +12,54 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @Service
 @Transactional
 @EnableScheduling
 
-public class VirementPermanentServiceImpl implements VirementPermanentService{
+public class VirementPermanentServiceImpl implements VirementPermanentService {
     @Autowired
     CompteRepository compteRepository;
-    Compte compte= new Compte();
+    Compte compte = new Compte();
     TransactionBancaire trc = new TransactionBancaire();
+
 
     //@Scheduled(fixedDelay = 3000, initialDelay = 5000)
     @Override
-    @Scheduled(fixedRate = 10)
+
+
     public double virementPermanent() throws SoldeInsufficientException {
+      TimerTask task = new TimerTask() {
+          @Override
+          public void run() {
+              compte.setSolde(555-100);
+              System.out.println("***********" + compte.getSolde());
+          }
+      };
 
-        if(compte.getSolde()< trc.getMontant()){
-            throw new SoldeInsufficientException("Votre Solde est insufficient");
-        }else {
-            compte.setSolde( (compte.getSolde()- trc.getMontant()));
+       /* {
 
-        }
-        compteRepository.save(compte);
+            if (compte.getSolde() < trc.getMontant()) {
+                throw new SoldeInsufficientException("Votre Solde est insufficient");
+            } else {
+                compte.setSolde((compte.getSolde() - trc.getMontant()));
+
+            }
+            compteRepository.save(compte);
+            System.out.println("***********" + compte.getSolde());
+
+
+            return compte.getSolde();
+        }*/
+        Timer timer = new Timer("Timer");
+
+        timer.scheduleAtFixedRate(task, 10, 10);
+
+
         return compte.getSolde();
     }
-
 
 
 }

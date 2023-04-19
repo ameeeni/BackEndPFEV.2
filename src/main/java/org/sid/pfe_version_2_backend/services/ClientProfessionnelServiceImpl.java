@@ -4,6 +4,7 @@ import org.sid.pfe_version_2_backend.entities.Client_Professionnel;
 import org.sid.pfe_version_2_backend.repositories.ClientProfessionnelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,8 @@ public class ClientProfessionnelServiceImpl implements ClientProfessionnelServic
     @Autowired
 
     ClientProfessionnelRepository clientProfessionnelRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     @Override
     public Client_Professionnel getClientById(Long id) {
         return clientProfessionnelRepository.findById(id).get();
@@ -20,6 +23,8 @@ public class ClientProfessionnelServiceImpl implements ClientProfessionnelServic
 
     @Override
     public Client_Professionnel SaveClient(Client_Professionnel newClient) {
+        System.out.println("********"+ newClient.getPassword());
+        newClient.setMot_de_passe(passwordEncoder.encode(newClient.getPassword()));
         return clientProfessionnelRepository.save(newClient);
     }
 
@@ -31,8 +36,9 @@ public class ClientProfessionnelServiceImpl implements ClientProfessionnelServic
         updateClient.setNom(detailsClient.getNom());
         updateClient.setPrénom(detailsClient.getPrénom());
         updateClient.setEmail(detailsClient.getEmail());
+        updateClient.setPhone(detailsClient.getPhone());
         updateClient.setMot_de_passe(detailsClient.getMot_de_passe());
-        updateClient.setRaison_socile(detailsClient.getRaison_socile());
+        updateClient.setRaison_social(detailsClient.getRaison_social());
         updateClient.setNum_registre_commerce(detailsClient.getNum_registre_commerce());
         updateClient.setMatricule_fiscale(detailsClient.getMatricule_fiscale());
         clientProfessionnelRepository.save(updateClient);

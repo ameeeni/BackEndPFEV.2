@@ -30,6 +30,7 @@ public class ClientServiceImpl implements ClientService {
         updateClient.setNom(detailsClient.getNom());
         updateClient.setPrénom(detailsClient.getPrénom());
         updateClient.setEmail(detailsClient.getEmail());
+        updateClient.setPhone(detailsClient.getPhone());
         updateClient.setMot_de_passe(detailsClient.getMot_de_passe());
         clientRepository.save(updateClient);
     }

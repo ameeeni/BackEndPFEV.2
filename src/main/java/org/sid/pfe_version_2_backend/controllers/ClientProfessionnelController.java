@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ClientProfessionnel")
+@CrossOrigin("*")
 public class ClientProfessionnelController {
     @Autowired
     ClientProfessionnelService clientProfessionnelService;
@@ -21,6 +22,8 @@ public class ClientProfessionnelController {
     public ResponseEntity<Client_Professionnel> getClientById(@PathVariable Long id){
         return new ResponseEntity<>(clientProfessionnelService.getClientById(id) , HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:8100")
     @PostMapping
     public ResponseEntity<Client_Professionnel> saveClient(@RequestBody Client_Professionnel newClient) {
         newClient.setRole(Role.USER);
