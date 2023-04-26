@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "f4e184ed-424a-40b2-b566-eefb1892acb1",
+		"name": "pfeMyBankPosteTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ClientTest",
+			"item": [
+				{
+					"name": "GetClientRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/Clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"Clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutClientRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_client\": 1,\r\n    \"nom\": \"ameni\",\r\n    \"prénom\": \"bramli\",\r\n    \"email\": \"amenibramli@gmail\",\r\n    \"mot_de_passe\": \"hamza5ouameni\",\r\n    \"adresse\": \"france\",\r\n    \"rib\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/Clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"Clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostClientRequest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\"id_client\": \"1\" ,\r\n     \"nom\":\"salah\",\r\n     \"prénom\": \"mejri\",\r\n      \"email\":\"salahmejri@gmail\",\r\n     \"mot_de_passe\" : \"rajelameni\",\r\n     \"adresse\":\"manouba\" ,\r\n      \"RIB\": 856476952585}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/Clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"Clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClientRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/Clients/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"Clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClientParticulierTest",
+			"item": [
+				{
+					"name": "GetClientParticulierRequest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/ClientParticulier/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientParticulier",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostClientParticulierRequest",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var moment = require('moment');\r",
+									"pm.globals.set(\"currentDateTime\" , moment().format())"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "     {\"id_client\": 1,\r\n     \"nom\":\"ameni\",\r\n     \"prénom\": \"bramli\",\r\n      \"email\":\"amenibramli1@gmail.com\",\r\n     \"mot_de_passe\" : \"ameni123\",\r\n     \"adresse\":\"rue ben naser\" ,\r\n      \"RIB\": 8564476952585,\r\n      \"CIN\": 130240420,\r\n     \"date_de_naissance\": null ,\r\n     \"lieu_de_naissance\":\"Tunis\",\r\n     \"profession\":\"Engineer\" ,\r\n     \"status\": \"en couple \"\r\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/ClientParticulier",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientParticulier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutClientParticulierRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_client\": 5,\r\n    \"nom\": \"ameni\",\r\n    \"prénom\": \"bramli\",\r\n    \"email\": \"eyanefzi@gmail\",\r\n    \"mot_de_passe\": \"eyaingénieur\",\r\n    \"adresse\": \"tonja\",\r\n    \"date_de_naissance\": null,\r\n    \"lieu_de_naissance\": \"Tunis\",\r\n    \"profession\": \"Engineer\",\r\n    \"status\": \"Celibataire \",\r\n    \"compteEpargneList\": [],\r\n    \"compteProfessionnelList\": [],\r\n    \"cin\": 0,\r\n    \"listeDesComptes\": [],\r\n    \"rib\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/ClientParticulier/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientParticulier",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClientParticulierRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/ClientParticulier/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientParticulier",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ClientProfessionnelTest",
+			"item": [
+				{
+					"name": "GetClientProfessionnelRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/ClientProfessionnel/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientProfessionnel",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostClientParticulierRequest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_client\": \"4\" ,\r\n     \"nom\":\"hamza\",\r\n     \"prénom\": \"bramli\",\r\n      \"email\":\"hamzabramli@gmail\",\r\n     \"mot_de_passe\" : \"hamza\",\r\n     \"adresse\":\"bebsouika\" ,\r\n      \"RIB\": 856476952585, \r\n      \"matricule_fiscale\":\"552hbdkd\",\r\n     \"raison_socile\":\"commercante \",\r\n   \"num_registre_commerce\":\"45226125\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/ClientProfessionnel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientProfessionnel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutClientParticulierRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_client\":\"11\",\r\n     \"nom\":\"salah\",\r\n     \"prénom\": \"mejri\",\r\n      \"email\":\"mayssaelayeb@gmail\",\r\n     \"mot_de_passe\" : \"eyaingénieur\",\r\n     \"adresse\":\"tonja\" ,\r\n      \"RIB\": 856476952585, \r\n      \"matricule_fiscale\":\"552hbdkd\",\r\n     \"raison_socile\":\"commercante \",\r\n   \"num_registre_commerce\":\"45226125\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/ClientProfessionnel/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientProfessionnel",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClientParticulierRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/ClientProfessionnel/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"ClientProfessionnel",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CompteTest",
+			"item": [
+				{
+					"name": "GetCompteRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "PutCompteRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "PostCompteRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_compte\": 1, \r\n    \"solde\":200.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/Compte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"Compte"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompteRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CompteEpargneTest",
+			"item": [
+				{
+					"name": "GetCompteEpargneRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/CompteEpargne/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteEpargne",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostCompteEpargneRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id_compte\": 1,\r\n     \"date_de_creation\":null,\r\n    \"solde\":200 , \r\n    \"taux_interet\": 2.2 , \r\n    \"client_particulier\": {\r\n        \"id_client\" : 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/CompteEpargne",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteEpargne"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutCompteEpargneRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompteEpargneRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CompteCourantTest",
+			"item": [
+				{
+					"name": "GetCompteCourrantRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/CompteCourrant/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteCourrant",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostCompteCourrantRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id_compte\": 5,\r\n     \"date_de_creation\":null,\r\n    \"solde\":200 , \r\n    \"taux_interet\": 2.2 , \r\n    \"client_professionnel\": {\r\n        \"id_client\" : 3\r\n        \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/CompteCourrant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteCourrant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutCompteCourrantRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompteCourrantRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/CompteCourrant/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteCourrant",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CompteProfessionnelTest",
+			"item": [
+				{
+					"name": "GetCompteProfessionnelRequest",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/CompteProfessionnel/51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteProfessionnel",
+								"51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PutCompteProfessionnelRequest",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "PostCompteCourrantRequest",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id_compte\": 15,\r\n     \"date_de_creation\":null,\r\n    \"solde\":200 , \r\n    \"debit\": 2.2 , \r\n    \"client_particulier\": {\r\n        \"id_client\" : 14\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/CompteProfessionnel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"CompteProfessionnel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCompteCourrantRequest",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TransationBancaireTest",
+			"item": [
+				{
+					"name": "GetAllTransactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/transactionbancaire",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"transactionbancaire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTransactionById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "PostTransactionBancaire",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n       \"id_transaction\":1,\r\n     \"date_de_transaction\":2,\r\n      \"lieu_de_transaction\":\"Tunis\",\r\n       \"montant\": 35 ,\r\n       \"type\" : 0,\r\n        \"compteEpargne\": {\r\n           \"id_compte\": 1\r\n       }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/transactionbancaire",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"transactionbancaire"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactionBancaiteByCompteEpargne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/transactionbancaire/compte/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"transactionbancaire",
+								"compte",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VirementPermanantTest",
+			"item": []
+		},
+		{
+			"name": "VirementInstantéTest",
+			"item": []
+		},
+		{
+			"name": "VirementClassiqueTest",
+			"item": []
+		},
+		{
+			"name": "SpringSecurity",
+			"item": [
+				{
+					"name": "authenticate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\":\"amenibramli@gmail\",\r\n\"mot_de_passe\" : \"ameni123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "regsiter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\": \"amenibramli\",\r\n\"prenom\": \"0000\",\r\n\"email\": \"amenibramli@hotmail.com\",\r\n\"mot_de_passe\":\"0000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
