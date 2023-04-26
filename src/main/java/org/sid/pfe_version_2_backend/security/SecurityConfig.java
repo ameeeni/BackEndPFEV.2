@@ -29,6 +29,12 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -45,18 +51,32 @@ public class SecurityConfig
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf->csrf.disable())
-                /*.authorizeHttpRequests(auth-> auth
-                        .requestMatchers("/auth/authenticate" ,"/auth/register", "/Clients/**" , "/ClientParticulier/**" , "/ClientProfessionnel/**" , "/Compte/**" , "/CompteCourrant/**", "/CompteEpargne/**", "/CompteProfessionnel/**", "/transactionbancaire/**" ,"/VirementPermanent/**").permitAll()
-                )*/
-
-                .authorizeHttpRequests(auth->auth.anyRequest().permitAll())
+                .authorizeHttpRequests(auth-> auth
+                        .requestMatchers("/auth/authenticate" ,"/auth/register", "/Clients/**" , "/ClientParticulier/**" , "/ClientProfessionnel/**" , "/Compte/**" , "/CompteCourrant/**", "/CompteEpargne/**", "/CompteProfessionnel/**", "/transactionbancaire/compte/**" ,"/VirementPermanent/**").permitAll()
+                )
+                .cors(Customizer.withDefaults())
+//               /* .authorizeHttpRequests(auth->auth.anyRequest().permitAll())*/
                 .sessionManagement(sess->sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .httpBasic(Customizer.withDefaults())
-                .build();
-    }
 
+                .httpBasic(Customizer.withDefaults())
+
+
+
+         .build();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8100"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "content-type"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
     @Bean
     public AuthenticationManager authManager(UserDetailsService userDetailsService){
         var authProvider = new DaoAuthenticationProvider();

@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/CompteProfessionnel")
+@CrossOrigin(origins = "http://localhost:8100")
 public class CompteProfessionnelController {
     @Autowired
      CompteProfessionnelService compteProfessionnelService;
+    @CrossOrigin(origins = "http://localhost:8100")
     @GetMapping("/{id}")
     public ResponseEntity<CompteProfessionnel> getCompteProfessionnelById(@PathVariable Long id) throws CompteBancaireNotFoundException {
         return new ResponseEntity<>(compteProfessionnelService.getCompteById(id) , HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:8100")
     @PostMapping
+
     public ResponseEntity<CompteProfessionnel> saveCompteProfessionnel(@RequestBody CompteProfessionnel newCompte)  {
         CompteProfessionnel savedCompte = compteProfessionnelService.saveCompte(newCompte);
         HttpHeaders httpHeaders = new HttpHeaders();

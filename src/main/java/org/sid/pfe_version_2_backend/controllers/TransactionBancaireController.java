@@ -34,6 +34,12 @@ public class TransactionBancaireController {
         return new ResponseEntity<>(savedTransaction,httpHeaders, HttpStatus.CREATED);
     }
 
+    @GetMapping("/compte/{id_compte}")
+
+    public ResponseEntity<List<TransactionBancaire>> geTransactionBancaireByCompteEpargne(@PathVariable Long id_compte){
+        return new ResponseEntity<>(transactionBancaireService.getTransactionBancaireByCompteEpargne(id_compte) , HttpStatus.OK);
+    }
+
 
 
 }

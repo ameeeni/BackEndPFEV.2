@@ -10,15 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 @Transactional
+@CrossOrigin
 public class CompteProfessionnelServiceImpl implements CompteProfessionnelService {
     @Autowired
     ClientRepository clientRepository;
     @Autowired
     CompteProfessionnelRepository compteProfessionnelRepository;
-
+    @CrossOrigin(origins = "http://localhost:8100")
     @Override
     public CompteProfessionnel getCompteById(Long id) throws CompteBancaireNotFoundException {
        CompteProfessionnel compteProfessionnel= compteProfessionnelRepository.findById(id)

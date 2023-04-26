@@ -1,6 +1,11 @@
 package org.sid.pfe_version_2_backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,13 +24,14 @@ public class Client_Particulier extends Client{
     private String lieu_de_naissance;
     private String profession;
     private String status ;
-
-    @OneToMany(mappedBy = "client_particulier" ) /**Le clé etranger dans le bank account **/
+    @JsonIgnore
+    @OneToMany(mappedBy = "client_particulier" , fetch = FetchType.EAGER ) /**Le clé etranger dans le bank account **/
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)/*C'est pas important de nous afficher la liste des BankAccount**/
     private List<CompteCourrant> ListeDesComptes;
-    @OneToMany(mappedBy = "client_particulier")
+    @OneToMany(mappedBy = "client_particulier", fetch = FetchType.EAGER)
     private List<CompteEpargne> compteEpargneList;
-    @OneToMany(mappedBy="client_particulier")
+    @JsonIgnore
+    @OneToMany(mappedBy="client_particulier" , fetch = FetchType.EAGER)
     private  List<CompteProfessionnel> compteProfessionnelList;
 
 }

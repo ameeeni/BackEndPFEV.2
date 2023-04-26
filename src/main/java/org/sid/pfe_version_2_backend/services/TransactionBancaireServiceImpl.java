@@ -26,4 +26,9 @@ public class TransactionBancaireServiceImpl implements TransactionBancaireServic
     public TransactionBancaire saveTransactions(TransactionBancaire transactionBancaire) {
         return transactionBancaireRepository.save(transactionBancaire);
     }
+
+    @Override
+    public List<TransactionBancaire> getTransactionBancaireByCompteEpargne(Long id_compte) {
+        return transactionBancaireRepository.getTransactionBancaireByCompteEpargne(id_compte);
+    }
 }

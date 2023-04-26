@@ -9,4 +9,5 @@ public interface TransactionBancaireService {
     List<TransactionBancaire> getAllTransactionBancaire();
     TransactionBancaire getTransactionBancaireById(Long id);
     TransactionBancaire saveTransactions(TransactionBancaire transactionBancaire);
+    List<TransactionBancaire> getTransactionBancaireByCompteEpargne(Long id_compte);
 }
